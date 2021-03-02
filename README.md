@@ -76,3 +76,12 @@ apt-get update && apt-get install libopencv-highgui-dev
 # cat /workspace/myoutput
 {"model_name":"<model_name>","model_version":"1","outputs":[{"name":"OUTPUT","datatype":"BYTES","shape":[1,3],"parameters":{"binary_data_size":72}}]}0.723992:504:COFFEE MUG0.270952:968:CUP0.001160:967:ESPRESSO#
 ```
+
+## To generate non binary JSON file for inference
+
+* For generate non-binary JSON file, pls reference [python script](https://github.com/zet809/triton-server-learning/blob/main/triton-tool/generate-json.py)
+* do inference
+```
+# curl --location -X POST 'http://127.0.0.1:8000/v2/models/resnet50_netdef/versions/1/infer' -d @mypostdata.json
+{"model_name":"resnet50_netdef","model_version":"1","outputs":[{"name":"gpu_0/softmax","datatype":"BYTES","shape":[1,3],"data":["0.686651:504:COFFEE MUG","0.308505:968:CUP","0.001335:505:COFFEEPOT"]}]}
+```
